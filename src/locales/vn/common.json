@@ -7,7 +7,12 @@
         "title": "Đăng nhập",
         "emailTitle": "Địa chỉ email",
         "passTitle": "Mật khẩu",
-        "loginBtn": "Xác nhận"
+        "loginBtn": "Xác nhận",
+        "passMin": "Mật khẩu phải có ít nhất 6 ký tự",
+        "emailInvalid": "Định dạng email không hợp lệ",
+        "emailRequired": "Email là bắt buộc",
+        "passRequired": "Mật khẩu là bắt buộc",
+        "invalid": "Email hoặc mật khẩu không hợp lệ"
     },
     "greeting": "Chào mừng bạn trở lại",
     "id": "ID của bạn là:",
