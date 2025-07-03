@@ -1,23 +1,30 @@
+import { LanguageSwitcher } from "../components/LanguageSwitcher";
 import { useAuth } from "../context/AuthContext";
+import { useTranslation } from "react-i18next";
 
 export const HomePage = () => {
   const { user, logout } = useAuth();
-  
+  const { t } = useTranslation();
+
   const handleLogout = () => {
     logout();
   };
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1 className="text-2xl font-bold text-center">Home Page</h1>
-      <p className="text-center">Welcome {user?.name} to the home page!</p>
-      <p className="text-center">Your email is: {user?.email}</p>
-      <p className="text-center">Your ID is: {user?.id}</p>
+        <div className="bg-gray-200 w-full flex justify-between h-12 items-center px-10">
+                <h1 className="text-2xl font-bold ">Home page </h1>
+                <LanguageSwitcher />
+        </div>
+
+      <p className="text-center">{t("greeting")} {user?.name}</p>
+      <p className="text-center">{t("email")} {user?.email}</p>
+      <p className="text-center">{t("id")} {user?.id}</p>
       <button
         onClick={handleLogout}
         className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg cursor-pointer"
       >
-        Logout
+        {t("logout")}
       </button>
     </div>
   );

@@ -1,0 +1,18 @@
+{
+    "language": {
+        "en": "English",
+        "vn": "Vietnamese"
+    },
+    "login":{
+        "title": "Login",
+        "emailTitle": "Email address",
+        "passTitle": "Password",
+        "loginBtn": "Submit"
+    },
+
+    "greeting": "Welcome back",
+    "id": "Your ID is:",
+    "email": "Your email address is:",
+    "logout": "Logout"
+
+}

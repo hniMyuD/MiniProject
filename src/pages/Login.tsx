@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
+import { LanguageSwitcher } from "../components/LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
 export const Login = () => {
   const { login } = useAuth();
+  const {t} = useTranslation();
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -32,9 +35,12 @@ export const Login = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
-        <h1 className="text-center text-3xl font-extrabold text-gray-900 dark:text-white mb-6">
-          Login
-        </h1>
+        <div className="flex items-center justify-between mb-6">
+          <div className="text-center text-3xl font-extrabold text-gray-900 dark:text-white">
+            {t("login.title")}
+          </div>
+          <LanguageSwitcher />
+        </div>
 
         {error && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
@@ -48,7 +54,7 @@ export const Login = () => {
               htmlFor="email"
               className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
             >
-              Email address
+              {t("login.emailTitle")}
             </label>
             <input
               type="email"
@@ -64,7 +70,7 @@ export const Login = () => {
               htmlFor="password"
               className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
             >
-              Password
+              {t("login.passTitle")}
             </label>
             <input
               type="password"
@@ -79,7 +85,7 @@ export const Login = () => {
             type="submit"
             className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Submit
+            {t("login.loginBtn")}
           </button>
         </form>
       </div>

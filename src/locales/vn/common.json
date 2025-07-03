@@ -1,0 +1,17 @@
+{
+    "language": {
+        "en": "Tiếng Anh",
+        "vn": "Tiếng Việt"
+    },
+     "login":{
+        "title": "Đăng nhập",
+        "emailTitle": "Địa chỉ email",
+        "passTitle": "Mật khẩu",
+        "loginBtn": "Xác nhận"
+    },
+    "greeting": "Chào mừng bạn trở lại",
+    "id": "ID của bạn là:",
+    "email": "Địa chỉ email của bạn là:",
+    "logout": "Đăng xuất"
+
+}
