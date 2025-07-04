@@ -1,13 +1,22 @@
-import React from "react";
 import { useAuth } from "../context/AuthContext";
 import { LanguageSwitcher } from "../components/LanguageSwitcher";
 import { useTranslation } from "react-i18next";
-import { useForm, type SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 
-type FormFields = {
-  email: string;
-  password: string;
-};
+const loginSchema = z.object({
+  email: z
+    .string()
+    .nonempty("Email is required")
+    .email("Invalid email format"),
+  password: z
+    .string()
+    .nonempty("Password is required")
+    .min(6, "Password must be at least 6 characters"),
+});
+
+type FormFields = z.infer<typeof loginSchema>;
 
 export const Login = () => {
   const { login } = useAuth();
@@ -18,20 +27,21 @@ export const Login = () => {
     handleSubmit,
     setError,
     formState: { errors },
-  } = useForm<FormFields>();
+  } = useForm<FormFields>({
+    resolver: zodResolver(loginSchema),
+  });
 
-  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+  const onSubmit = async (data: FormFields) => {
     try {
       await login(data.email, data.password);
     } catch (err) {
-      // Nếu login fail, hiển thị lỗi lên cả hai field
       setError("email", {
         type: "manual",
-        message: t("login.invalid") || "Invalid email or password",
+        message: t("login.invalid"),
       });
       setError("password", {
         type: "manual",
-        message: t("login.invalid") || "Invalid email or password",
+        message: t("login.invalid"),
       });
     }
   };
@@ -58,22 +68,11 @@ export const Login = () => {
             <input
               type="email"
               id="email"
-              autoComplete="email"
-              {...register("email", {
-                required: t("login.emailRequired"),
-                pattern: {
-                  value:
-                    /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                  message:
-                    t("login.emailInvalid") || "Invalid email format",
-                },
-              })}
+              {...register("email")}
               className="block w-full px-3 py-2 border rounded-md shadow-sm dark:bg-gray-700 dark:text-white border-gray-300 dark:border-gray-600 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
             />
             {errors.email && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.email.message}
-              </p>
+              <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
             )}
           </div>
 
@@ -88,23 +87,11 @@ export const Login = () => {
             <input
               type="password"
               id="password"
-              autoComplete="current-password"
-              {...register("password", {
-                required:
-                  t("login.passRequired"),
-                minLength: {
-                  value: 6,
-                  message:
-                    t("login.passMin") ||
-                    "Password must be at least 6 characters",
-                },
-              })}
+              {...register("password")}
               className="block w-full px-3 py-2 border rounded-md shadow-sm dark:bg-gray-700 dark:text-white border-gray-300 dark:border-gray-600 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
             />
             {errors.password && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.password.message}
-              </p>
+              <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
             )}
           </div>
 
