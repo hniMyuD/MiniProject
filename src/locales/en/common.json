@@ -12,12 +12,14 @@
         "emailInvalid": "Invalid email format",
         "emailRequired": "Email is required",
         "passRequired": "Password is required",
-        "invalid": "Invalid email or password"
+        "invalid": "Invalid email or password",
+        "googleError": "Login with Google failed. Please try again."
     },
 
     "greeting": "Welcome back",
     "id": "Your ID is:",
     "email": "Your email address is:",
-    "logout": "Logout"
+    "logout": "Logout",
+    "or": "OR"
 
 }

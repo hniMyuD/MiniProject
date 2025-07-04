@@ -17,6 +17,14 @@ export const login = async (email: string, password: string): Promise<LoginRespo
   });
 };
 
+export const loginWithGoogle = async (googleToken: string): Promise<LoginResponse> => {
+  return request<LoginResponse>({
+    url: '/auth/google-login',
+    method: 'POST',
+    data: { token: googleToken },
+  });
+};
+
 export const logout = async (): Promise<void> => {
   return request<void>({
     url: '/auth/logout',

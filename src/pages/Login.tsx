@@ -4,14 +4,12 @@ import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Button } from "../components/Button";
-import { Input } from "../components/Input";
+import { Input } from "@components/Input";
+import { Button } from "@components/Button";
+import { GoogleLogin } from "@react-oauth/google";
 
 const loginSchema = z.object({
-  email: z
-    .string()
-    .nonempty("Email is required")
-    .email("Invalid email format"),
+  email: z.string().nonempty("Email is required").email("Invalid email format"),
   password: z
     .string()
     .nonempty("Password is required")
@@ -21,7 +19,7 @@ const loginSchema = z.object({
 type FormFields = z.infer<typeof loginSchema>;
 
 export const Login = () => {
-  const { login } = useAuth();
+  const { login, loginWithGoogle } = useAuth();
   const { t } = useTranslation();
 
   const {
@@ -48,6 +46,16 @@ export const Login = () => {
     }
   };
 
+  const handleGoogleSuccess = async (credentialResponse: any) => {
+    try {
+      await loginWithGoogle(credentialResponse.credential);
+    } catch (err) {
+      alert(t("login.googleError"));
+    }
+  };
+
+  const handleGoogleError = () => {};
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
@@ -58,26 +66,12 @@ export const Login = () => {
           <LanguageSwitcher />
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-6">
-          {/* Email
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-            >
-              {t("login.emailTitle")}
-            </label>
-            <input
-              type="email"
-              id="email"
-              {...register("email")}
-              className="block w-full px-3 py-2 border rounded-md shadow-sm dark:bg-gray-700 dark:text-white border-gray-300 dark:border-gray-600 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-            />
-            {errors.email && (
-              <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
-            )}
-          </div> */}
-
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          noValidate
+          className="space-y-6"
+        >
+          {/* Email */}
           <Input
             label={t("login.emailTitle")}
             type="email"
@@ -104,8 +98,28 @@ export const Login = () => {
             type="submit"
             className="w-full flex justify-center py-2 px-4 rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
           />
-
         </form>
+
+        <div className="mt-6 relative">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
+          </div>
+          <div className="relative flex justify-center text-sm">
+            <span className="px-2 dark:bg-gray-800  dark:text-gray-400">
+              {t("or")}
+            </span>
+          </div>
+        </div>
+
+        <div className="mt-6 flex justify-center">
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={handleGoogleError}
+            text="signin_with"
+            shape="rectangular"
+            locale="auto"
+          />
+        </div>
       </div>
     </div>
   );

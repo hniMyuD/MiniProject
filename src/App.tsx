@@ -5,7 +5,7 @@ import { AppRoutes } from "@routes/AppRoutes";
 import './i18n'
 
 function App() {
-  const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID || '';
+  const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
   return (
     <>
       <BrowserRouter>
@@ -20,3 +20,5 @@ function App() {
 }
 
 export default App
+
+
