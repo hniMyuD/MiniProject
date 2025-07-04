@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { GoogleLogin } from '@react-oauth/google';
 
 const loginSchema = z.object({
   email: z
@@ -19,7 +20,7 @@ const loginSchema = z.object({
 type FormFields = z.infer<typeof loginSchema>;
 
 export const Login = () => {
-  const { login } = useAuth();
+  const { login, loginWithGoogle } = useAuth();
   const { t } = useTranslation();
 
   const {
@@ -44,6 +45,19 @@ export const Login = () => {
         message: t("login.invalid"),
       });
     }
+  };
+
+  const handleGoogleSuccess = async (credentialResponse: any) => {
+    try {
+      await loginWithGoogle(credentialResponse.credential);
+      // Redirect is handled in AuthContext after successful login
+    } catch (err) {
+
+    }
+  };
+
+  const handleGoogleError = () => {
+
   };
 
   return (
@@ -103,6 +117,30 @@ export const Login = () => {
             {t("login.loginBtn")}
           </button>
         </form>
+
+        <div className="mt-6 relative">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-300 dark:border-gray-600"></div>
+          </div>
+          <div className="relative flex justify-center text-sm">
+            <span className="px-2 dark:bg-gray-800  dark:text-gray-400">
+              OR
+            </span>
+          </div>
+        </div>
+        
+        <div className="mt-6 flex justify-center">
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={handleGoogleError}
+            text="signin_with"
+            shape="rectangular"
+            locale="auto"
+          />
+        </div>  
+
+
+
       </div>
     </div>
   );

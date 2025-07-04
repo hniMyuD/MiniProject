@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {
   login as apiLogin,
   logout as apiLogout,
+  loginWithGoogle as googleLogin,
 } from "../services/authService";
 
 interface User {
@@ -15,6 +16,7 @@ interface AuthContextType {
   isAuthenticated: boolean;
   user: User | null;
   login: (email: string, password: string) => Promise<void>;
+  loginWithGoogle: (googleToken: string) => Promise<void>;
   logout: () => void;
 }
 
@@ -49,6 +51,24 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const loginWithGoogle = async (googleToken: string) => {
+    try {
+      const { token, user } = await googleLogin(googleToken);
+      setToken(token);
+      setUser(user);
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      if (token) {
+        navigate("/homepage");
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+      throw error;
+    } finally {
+    }
+  };
+
   const logout = async () => {
     try {
       await apiLogout();
@@ -66,7 +86,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ token, isAuthenticated: !!token, user, login, logout }}
+      value={{ token, isAuthenticated: !!token, user, login, loginWithGoogle, logout }}
     >
       {children}
     </AuthContext.Provider>
