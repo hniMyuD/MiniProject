@@ -1,0 +1,25 @@
+{
+    "language": {
+        "en": "English",
+        "vn": "Vietnamese"
+    },
+    "login":{
+        "title": "Login",
+        "emailTitle": "Email address",
+        "passTitle": "Password",
+        "loginBtn": "Submit",
+        "passMin": "Password must be at least 6 characters",
+        "emailInvalid": "Invalid email format",
+        "emailRequired": "Email is required",
+        "passRequired": "Password is required",
+        "invalid": "Invalid email or password",
+        "googleError": "Login with Google failed. Please try again."
+    },
+
+    "greeting": "Welcome back",
+    "id": "Your ID is:",
+    "email": "Your email address is:",
+    "logout": "Logout",
+    "or": "OR"
+
+}

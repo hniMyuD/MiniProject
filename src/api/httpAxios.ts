@@ -1,4 +1,5 @@
 import axios from "axios";
+import { storage } from "@/utils/storage";
 
 const BASE_URL = "http://localhost:3000/api";
 
@@ -14,7 +15,7 @@ const httpClient = axios.create({
 
 httpClient.interceptors.request.use(
     (config: any) => {
-        const token = localStorage.getItem("token");
+        const token = storage.get<string>("token");
         if (token && config.headers) {
             config.headers["Authorization"] = `Bearer ${token}`;
         }
@@ -34,8 +35,7 @@ httpClient.interceptors.response.use(
 
         // Handle 401 Unauthorized errors (token expired or invalid)
         if (response && response.status === 401) {
-            localStorage.removeItem('token');
-            window.location.href = '/login';
+            storage.remove("token");
         }
         return Promise.reject(error);
     }

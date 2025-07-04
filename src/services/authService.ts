@@ -1,4 +1,4 @@
-import { request } from '../api/httpAxios';
+import { request } from '@api/httpAxios';
 
 interface LoginResponse {
   user: {
@@ -14,6 +14,14 @@ export const login = async (email: string, password: string): Promise<LoginRespo
     url: '/auth/login',
     method: 'POST',
     data: { email, password },
+  });
+};
+
+export const loginWithGoogle = async (googleToken: string): Promise<LoginResponse> => {
+  return request<LoginResponse>({
+    url: '/auth/google-login',
+    method: 'POST',
+    data: { token: googleToken },
   });
 };
 
