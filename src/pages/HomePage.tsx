@@ -1,3 +1,4 @@
+import { Button } from "@components/Button";
 import { LanguageSwitcher } from "@components/LanguageSwitcher";
 import { useAuth } from "@context/AuthContext";
 import { useTranslation } from "react-i18next";
@@ -20,12 +21,14 @@ export const HomePage = () => {
       <p className="text-center">{t("greeting")} {user?.name}</p>
       <p className="text-center">{t("email")} {user?.email}</p>
       <p className="text-center">{t("id")} {user?.id}</p>
-      <button
+
+      <Button
+        title={t("logout")}
+        type="button"
         onClick={handleLogout}
         className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg cursor-pointer"
-      >
-        {t("logout")}
-      </button>
+      />
+
     </div>
   );
 };
