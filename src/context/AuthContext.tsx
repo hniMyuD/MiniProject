@@ -4,7 +4,8 @@ import {
   login as apiLogin,
   logout as apiLogout,
   loginWithGoogle as googleLogin,
-} from "../services/authService";
+} from "@services/authService";
+
 
 interface User {
   id: string;
