@@ -1,12 +1,13 @@
 import { useTranslation } from 'react-i18next';
-import { Button } from './Button';
+import { Button } from '@components/Button';
+import { storage } from '@/utils/storage';
 
 export const LanguageSwitcher = () => {
   const { i18n, t } = useTranslation();
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
-    localStorage.setItem('language', lng);
+    storage.set("language", lng);
   };
 
   return (

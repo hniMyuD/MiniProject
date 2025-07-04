@@ -16,6 +16,7 @@ export default defineConfig({
       "@routes": path.resolve(__dirname, "src/routes"),
       "@locales": path.resolve(__dirname, "src/locales"),
       "@mocks": path.resolve(__dirname, "src/mocks"),
+      "@utils": path.resolve(__dirname, "src/utils"),
     }
   },
 })

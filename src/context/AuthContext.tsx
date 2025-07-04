@@ -1,11 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  login as apiLogin,
-  logout as apiLogout,
-  loginWithGoogle as googleLogin,
-} from "@services/authService";
-
+import {  login as apiLogin,  logout as apiLogout,  loginWithGoogle as googleLogin} from "@services/authService";
+import { storage } from "@/utils/storage";
 
 interface User {
   id: string;
@@ -26,12 +22,12 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
   const [token, setToken] = useState<string | null>(
-    localStorage.getItem("token")
+    storage.get<string>("token")
   );
 
   const [user, setUser] = useState<User | null>(() => {
-    const storedUser = localStorage.getItem("user");
-    return storedUser ? JSON.parse(storedUser) : null;
+    const storedUser = storage.get<User>("user");
+    return storedUser ? storedUser : null;
   });
 
   const login = async (email: string, password: string) => {
@@ -39,8 +35,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const { token, user } = await apiLogin(email, password);
       setToken(token);
       setUser(user);
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
+      storage.set<string>("token", token);
+      storage.set<User>("user", user);
 
       if (token) {
         navigate("/homepage");
@@ -57,8 +53,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const { token, user } = await googleLogin(googleToken);
       setToken(token);
       setUser(user);
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
+      storage.set<string>("token", token);
+      storage.set<User>("user", user);
 
       if (token) {
         navigate("/homepage");
@@ -75,9 +71,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     } catch (error) {
       console.error("Logout API call failed:", error);
     } finally {
-      // Clear local state regardless of API success
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
+      storage.clear();
       setToken(null);
       setUser(null);
       navigate("/login");
