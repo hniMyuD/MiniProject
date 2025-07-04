@@ -50,9 +50,9 @@ export const Login = () => {
   const handleGoogleSuccess = async (credentialResponse: any) => {
     try {
       await loginWithGoogle(credentialResponse.credential);
-      // Redirect is handled in AuthContext after successful login
-    } catch (err) {
 
+    } catch (err) {
+      alert(t("login.googleError"));
     }
   };
 
@@ -124,7 +124,7 @@ export const Login = () => {
           </div>
           <div className="relative flex justify-center text-sm">
             <span className="px-2 dark:bg-gray-800  dark:text-gray-400">
-              OR
+              {t("or")}
             </span>
           </div>
         </div>

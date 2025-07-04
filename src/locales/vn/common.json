@@ -12,11 +12,13 @@
         "emailInvalid": "Định dạng email không hợp lệ",
         "emailRequired": "Email là bắt buộc",
         "passRequired": "Mật khẩu là bắt buộc",
-        "invalid": "Email hoặc mật khẩu không hợp lệ"
+        "invalid": "Email hoặc mật khẩu không hợp lệ",
+        "googleError": "Đăng nhập bằng Google không thành công. Vui lòng thử lại."
     },
     "greeting": "Chào mừng bạn trở lại",
     "id": "ID của bạn là:",
     "email": "Địa chỉ email của bạn là:",
-    "logout": "Đăng xuất"
+    "logout": "Đăng xuất",
+    "or": "HOẶC"
 
 }
