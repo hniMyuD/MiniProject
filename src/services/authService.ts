@@ -1,4 +1,4 @@
-import { request } from '../api/httpAxios';
+import { request } from '@api/httpAxios';
 
 interface LoginResponse {
   user: {

@@ -1,5 +1,5 @@
-import { useAuth } from "../context/AuthContext";
-import { LanguageSwitcher } from "../components/LanguageSwitcher";
+import { useAuth } from "@context/AuthContext";
+import { LanguageSwitcher } from "@components/LanguageSwitcher";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";

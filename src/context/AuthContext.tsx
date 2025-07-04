@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {
   login as apiLogin,
   logout as apiLogout,
-} from "../services/authService";
+} from "@services/authService";
 
 interface User {
   id: string;
