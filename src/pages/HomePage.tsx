@@ -1,5 +1,5 @@
-import { LanguageSwitcher } from "../components/LanguageSwitcher";
-import { useAuth } from "../context/AuthContext";
+import { LanguageSwitcher } from "@components/LanguageSwitcher";
+import { useAuth } from "@context/AuthContext";
 import { useTranslation } from "react-i18next";
 
 export const HomePage = () => {
