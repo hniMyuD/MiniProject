@@ -49,7 +49,23 @@ export const handlers = [
     return new HttpResponse('Invalid credentials', { status: 401 });
   }),
 
-  http.post('http://localhost:3000/api/auth/logout', async ({ request }) => {
+  http.post('http://localhost:3000/api/auth/logout', async ({}) => {
     return HttpResponse.json({ message: 'Logged out successfully' });
-  })
+  }),
+
+  
+  http.post('http://localhost:3000/api/auth/signup', async ({ request }) => {
+    const body = await request.json() as LoginRequestBody;
+    const { email, password } = body;
+
+    if (email && password) {
+      return HttpResponse.json({
+        message: 'signed up successfully',
+      });
+    }
+
+    return new HttpResponse('Invalid credentials', { status: 401 });
+  }),
+
+
 ];

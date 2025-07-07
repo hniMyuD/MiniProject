@@ -7,6 +7,7 @@ import { z } from "zod";
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
 import { GoogleLogin } from "@react-oauth/google";
+import { useNavigate } from "react-router";
 
 const loginSchema = z.object({
   email: z.string().nonempty("Email is required").email("Invalid email format"),
@@ -21,6 +22,7 @@ type FormFields = z.infer<typeof loginSchema>;
 export const Login = () => {
   const { login, loginWithGoogle } = useAuth();
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -111,13 +113,21 @@ export const Login = () => {
           </div>
         </div>
 
-        <div className="mt-6 flex justify-center">
+        <div className="mt-6 flex justify-center gap-2">
           <GoogleLogin
             onSuccess={handleGoogleSuccess}
             onError={handleGoogleError}
             text="signin_with"
             shape="rectangular"
             locale="auto"
+            containerProps={{ className: "w-[50%]" }}
+          />
+
+          <Button
+            title={t("signup.title")}
+            type="button"
+            className="w-full flex justify-center py-2 px-4 rounded-md text-indigo-600 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
+            onClick={() => navigate("/signup")}
           />
         </div>
       </div>

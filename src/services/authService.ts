@@ -12,6 +12,10 @@ interface LoginResponse {
   token: string;
 }
 
+interface SignUpResponse {
+  message: string;
+}
+
 export const login = async (email: string, password: string): Promise<LoginResponse> => {
   return request<LoginResponse>({
     url: '/auth/login',
@@ -25,6 +29,14 @@ export const loginWithGoogle = async (googleToken: string): Promise<LoginRespons
     url: '/auth/google-login',
     method: 'POST',
     data: { token: googleToken },
+  });
+};
+
+export const signUp = async (email: string, password: string): Promise<SignUpResponse> => {
+  return request<SignUpResponse>({
+    url: '/auth/signup',
+    method: 'POST',
+    data: { email, password },
   });
 };
 

@@ -3,7 +3,10 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path';
 
+const repoName = 'MiniProject';
+
 export default defineConfig({
+  base: `/${repoName}/`,
   plugins: [react(),tailwindcss()],
   resolve: {
     alias: {
