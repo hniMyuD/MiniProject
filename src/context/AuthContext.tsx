@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {  login as apiLogin,  logout as apiLogout,  loginWithGoogle as googleLogin} from "@services/authService";
+import {  login as apiLogin,  logout as apiLogout,  loginWithGoogle as googleLogin, signUp as apiSignUp} from "@services/authService";
 import { storage } from "@/utils/storage";
 
 interface User {
@@ -17,6 +17,7 @@ interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => Promise<void>;
   loginWithGoogle: (googleToken: string) => Promise<void>;
+  signUp: (email: string, password: string) => Promise<void>;
   logout: () => void;
 }
 
@@ -81,9 +82,20 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const signUp = async (email: string, password: string) => {
+    try {
+      await apiSignUp(email, password);
+      navigate("/login");
+      alert("Sign up successful! Please log in.");
+    } catch (error) {
+      console.error("Sign up failed:", error);
+      throw error;
+    }
+  }
+
   return (
     <AuthContext.Provider
-      value={{ token, isAuthenticated: !!token, user, login, loginWithGoogle, logout }}
+      value={{ token, isAuthenticated: !!token, user, login, loginWithGoogle, logout, signUp }}
     >
       {children}
     </AuthContext.Provider>

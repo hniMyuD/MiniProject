@@ -15,6 +15,10 @@
         "invalid": "Email hoặc mật khẩu không hợp lệ",
         "googleError": "Đăng nhập bằng Google không thành công. Vui lòng thử lại."
     },
+    "signup": {
+        "title": "Đăng ký",
+        "confirmPassTitle": "Xác nhận mật khẩu"
+    },
     "greeting": "Chào mừng bạn trở lại",
     "id": "ID của bạn là:",
     "email": "Địa chỉ email của bạn là:",
