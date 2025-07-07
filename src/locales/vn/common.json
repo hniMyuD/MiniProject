@@ -1,0 +1,34 @@
+{
+    "language": {
+        "en": "Tiếng Anh",
+        "vn": "Tiếng Việt"
+    },
+     "login":{
+        "title": "Đăng nhập",
+        "emailTitle": "Địa chỉ email",
+        "passTitle": "Mật khẩu",
+        "loginBtn": "Xác nhận",
+        "passMin": "Mật khẩu phải có ít nhất 6 ký tự",
+        "emailInvalid": "Định dạng email không hợp lệ",
+        "emailRequired": "Email là bắt buộc",
+        "passRequired": "Mật khẩu là bắt buộc",
+        "invalid": "Email hoặc mật khẩu không hợp lệ",
+        "googleError": "Đăng nhập bằng Google không thành công. Vui lòng thử lại."
+    },
+    "greeting": "Chào mừng bạn trở lại",
+    "id": "ID của bạn là:",
+    "email": "Địa chỉ email của bạn là:",
+    "logout": "Đăng xuất",
+    "or": "HOẶC",
+    "profile": "Hồ sơ",
+    "dob": "Ngày sinh",
+    "slogan": "Khẩu hiệu",
+    "personalInfo": "Thông tin cá nhân",
+    "name": "Tên",
+    "externalLink": "Liên kết bên ngoài",
+    "saveChanges": "Lưu thay đổi",
+    "facebookUrl": "Đường dẫn Facebook",
+    "websiteUrl": "Đường dẫn Website",
+    "linkedInUrl": "Đường dẫn LinkedIn"
+
+}
