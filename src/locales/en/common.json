@@ -16,6 +16,13 @@
         "googleError": "Login with Google failed. Please try again."
     },
 
+    "signup":{
+        "title": "Sign Up",
+        "confirmPassTitle": "Confirm Password"
+    },
+
+    
+
     "greeting": "Welcome back",
     "id": "Your ID is:",
     "email": "Your email address is:",
