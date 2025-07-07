@@ -27,6 +27,16 @@
     "id": "Your ID is:",
     "email": "Your email address is:",
     "logout": "Logout",
-    "or": "OR"
+    "or": "OR",
+    "profile": "Profile",
+    "dob": "Date of Birth",
+    "slogan": "Slogan",
+    "personalInfo": "Personal Information",
+    "name": "Name",
+    "externalLink": "External Link",
+    "saveChanges": "Save Changes",
+    "facebookUrl": "Facebook URL",
+    "websiteUrl": "Website URL",
+    "linkedInUrl": "LinkedIn URL"
 
 }

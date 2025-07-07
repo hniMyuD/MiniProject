@@ -7,6 +7,9 @@ interface User {
   id: string;
   name: string;
   email: string;
+  slogan?: string;
+  dob?: string;
+  avatar?: string;
 }
 interface AuthContextType {
   token: string | null;

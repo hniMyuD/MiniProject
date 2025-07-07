@@ -20,6 +20,9 @@ export const handlers = [
           id: '1',
           name: 'Test User',
           email: 'test@example.com',
+          slogan: 'This is a test slogan.',
+          dob: '2004-05-08',
+          avatar: 'https://example.com/avatar.jpg',
         },
         token: 'mock-token-123',
       });
@@ -45,6 +48,12 @@ export const handlers = [
 
     return new HttpResponse('Invalid credentials', { status: 401 });
   }),
+
+
+  http.post('http://localhost:3000/api/auth/logout', async ({ request }) => {
+    return HttpResponse.json({ message: 'Logged out successfully' });
+  })
+
   
   http.post('http://localhost:3000/api/auth/signup', async ({ request }) => {
     const body = await request.json() as LoginRequestBody;
@@ -58,4 +67,5 @@ export const handlers = [
 
     return new HttpResponse('Invalid credentials', { status: 401 });
   }),
+
 ];
