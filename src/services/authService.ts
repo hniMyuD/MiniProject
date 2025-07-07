@@ -5,6 +5,9 @@ interface LoginResponse {
     id: string;
     name: string;
     email: string;
+    slogan?: string;
+    dob?: string;
+    avatar?: string;
   };
   token: string;
 }

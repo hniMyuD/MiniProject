@@ -19,6 +19,16 @@
     "id": "ID của bạn là:",
     "email": "Địa chỉ email của bạn là:",
     "logout": "Đăng xuất",
-    "or": "HOẶC"
+    "or": "HOẶC",
+    "profile": "Hồ sơ",
+    "dob": "Ngày sinh",
+    "slogan": "Khẩu hiệu",
+    "personalInfo": "Thông tin cá nhân",
+    "name": "Tên",
+    "externalLink": "Liên kết bên ngoài",
+    "saveChanges": "Lưu thay đổi",
+    "facebookUrl": "Đường dẫn Facebook",
+    "websiteUrl": "Đường dẫn Website",
+    "linkedInUrl": "Đường dẫn LinkedIn"
 
 }
