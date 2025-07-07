@@ -1,34 +1,26 @@
-import { Button } from "@components/Button";
-import { LanguageSwitcher } from "@components/LanguageSwitcher";
-import { useAuth } from "@context/AuthContext";
-import { useTranslation } from "react-i18next";
+import { NavBar } from "@/components/HomePage/NavBar";
+import { UserProfileCard } from "@/components/HomePage/UserProfileCard";
+import { UserPersonalInfoCard } from "@/components/HomePage/UserPersonalInfoCard";
+import { UserExternalLinkCard } from "@/components/HomePage/UserExternalLinkCard";
 
 export const HomePage = () => {
-  const { user, logout } = useAuth();
-  const { t } = useTranslation();
-
-  const handleLogout = () => {
-    logout();
-  };
-
   return (
-    <div className="flex flex-col items-center justify-center">
-        <div className="bg-gray-200 w-full flex justify-between h-12 items-center px-10">
-                <h1 className="text-2xl font-bold ">Home page </h1>
-                <LanguageSwitcher />
+    <div className="flex flex-col border-2 h-screen bg-gray-100">
+      <NavBar />
+
+      <div className="h-96 m-6 bg-white rounded-lg flex">
+        <div className="w-1/5 border-r-2 border-gray-200">
+          <UserProfileCard />
         </div>
 
-      <p className="text-center">{t("greeting")} {user?.name}</p>
-      <p className="text-center">{t("email")} {user?.email}</p>
-      <p className="text-center">{t("id")} {user?.id}</p>
+        <div className="w-2/5 border-r-2 border-gray-200">
+          <UserPersonalInfoCard />
+        </div>
 
-      <Button
-        title={t("logout")}
-        type="button"
-        onClick={handleLogout}
-        className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg cursor-pointer"
-      />
-
+        <div className="w-2/5">
+          <UserExternalLinkCard />
+        </div>
+      </div>
     </div>
   );
 };
