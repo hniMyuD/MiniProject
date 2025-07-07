@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
-import { GoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router";
 
 const loginSchema = z.object({
@@ -48,13 +48,18 @@ export const Login = () => {
     }
   };
 
-  const handleGoogleSuccess = async (credentialResponse: any) => {
-    try {
-      await loginWithGoogle(credentialResponse.credential);
-    } catch (err) {
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse) => {
+      try {
+        await loginWithGoogle(tokenResponse.access_token);
+      } catch (err) {
+        alert(t("login.googleError"));
+      }
+    },
+    onError: () => {
       alert(t("login.googleError"));
-    }
-  };
+    },
+  });
 
   const handleGoogleError = () => {};
 
@@ -114,19 +119,18 @@ export const Login = () => {
         </div>
 
         <div className="mt-6 flex justify-center gap-2">
-          <GoogleLogin
-            onSuccess={handleGoogleSuccess}
-            onError={handleGoogleError}
-            text="signin_with"
-            shape="rectangular"
-            locale="auto"
-            containerProps={{ className: "w-[50%]" }}
+
+          <Button
+            title={t("login.googleLogin")}
+            type="button"
+            onClick={() => googleLogin()}
+            className="w-full text-sm flex justify-center py-2 px-4 rounded-md text-indigo-600 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
           />
 
           <Button
             title={t("signup.title")}
             type="button"
-            className="w-full flex justify-center py-2 px-4 rounded-md text-indigo-600 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
+            className="w-full text-sm flex justify-center py-2 px-4 rounded-md text-indigo-600 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
             onClick={() => navigate("/signup")}
           />
         </div>

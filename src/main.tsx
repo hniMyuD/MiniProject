@@ -5,7 +5,12 @@ import App from '@/App.tsx'
 
 if (import.meta.env.DEV) {
   const { worker } = await import('./mocks/browser');
-  await worker.start();
+  await worker.start({
+  serviceWorker: {
+    url: `${import.meta.env.BASE_URL}mockServiceWorker.js`,
+  },
+});
+
 }
 
 createRoot(document.getElementById('root')!).render(

@@ -13,7 +13,8 @@
         "emailRequired": "Email is required",
         "passRequired": "Password is required",
         "invalid": "Invalid email or password",
-        "googleError": "Login with Google failed. Please try again."
+        "googleError": "Login with Google failed. Please try again.",
+        "googleLogin": "Login with Google"
     },
 
     "signup":{
