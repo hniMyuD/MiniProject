@@ -49,7 +49,7 @@ export const handlers = [
     return new HttpResponse('Invalid credentials', { status: 401 });
   }),
 
-  http.post('http://localhost:3000/api/auth/logout', async ({ request }) => {
+  http.post('http://localhost:3000/api/auth/logout', async ({}) => {
     return HttpResponse.json({ message: 'Logged out successfully' });
   }),
 
