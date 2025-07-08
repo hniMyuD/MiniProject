@@ -34,10 +34,12 @@
     "slogan": "Slogan",
     "personalInfo": "Personal Information",
     "name": "Name",
-    "externalLink": "External Link",
-    "saveChanges": "Save Changes",
-    "facebookUrl": "Facebook URL",
-    "websiteUrl": "Website URL",
-    "linkedInUrl": "LinkedIn URL"
-
+    "otherInfo": "Other Information",
+    "cell": "Cell",
+    "address": "Address",
+    "country": "Country",
+    "state": "State",
+    "city": "City",
+    "postcode": "Postcode",
+    "phone": "Phone"
 }

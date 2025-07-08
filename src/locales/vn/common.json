@@ -30,10 +30,14 @@
     "slogan": "Khẩu hiệu",
     "personalInfo": "Thông tin cá nhân",
     "name": "Tên",
-    "externalLink": "Liên kết bên ngoài",
-    "saveChanges": "Lưu thay đổi",
-    "facebookUrl": "Đường dẫn Facebook",
-    "websiteUrl": "Đường dẫn Website",
-    "linkedInUrl": "Đường dẫn LinkedIn"
+    "otherInfo": "Thông tin khác",
+    "cell": "Số di động",
+    "address": "Địa chỉ",
+    "country": "Quốc gia",
+    "state": "Tiểu bang/ Tỉnh",
+    "city": "Thành phố",
+    "postcode": "Mã bưu chính",
+    "phone": "Điện thoại bàn"
+
 
 }

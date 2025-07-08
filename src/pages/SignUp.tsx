@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useAuth } from "@/context/AuthContext";
+// import { useAuth } from "@/context/AuthContext";
 
 const signupSchema = z.object({
   email: z
@@ -31,7 +31,7 @@ type FormFields = z.infer<typeof signupSchema>;
 export const SignUp = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { signUp } = useAuth();
+  // const { signUp } = useAuth();
 
   const{register, handleSubmit, setError, formState: { errors }} = useForm<FormFields>({
     resolver: zodResolver(signupSchema),

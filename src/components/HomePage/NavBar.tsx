@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 export const NavBar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -48,12 +48,12 @@ export const NavBar = () => {
             <LanguageSwitcher />
           </div>
           <div className="w-full flex items-center gap-2 p-4">
-            <LuLogOut className="text-black w-4 h-4" />
+            <LuLogOut className="text-black w-6 h-6" />
             <Button
               title={t("logout")}
               type="button"
               onClick={handleLogout}
-              className=" text-black text-sm cursor-pointer"
+              className=" text-black text-sm cursor-pointer text-left w-full"
             />
           </div>
         </div>

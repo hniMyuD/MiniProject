@@ -1,14 +1,14 @@
 import { NavBar } from "@/components/HomePage/NavBar";
 import { UserProfileCard } from "@/components/HomePage/UserProfileCard";
 import { UserPersonalInfoCard } from "@/components/HomePage/UserPersonalInfoCard";
-import { UserExternalLinkCard } from "@/components/HomePage/UserExternalLinkCard";
+import { UserOtherInfoCard } from "@/components/HomePage/UserOtherInfoCard";
 
 export const HomePage = () => {
   return (
     <div className="flex flex-col border-2 h-screen bg-gray-100">
       <NavBar />
 
-      <div className="h-96 m-6 bg-white rounded-lg flex">
+      <div className="h-100 m-6 bg-white rounded-lg flex shadow-lg">
         <div className="w-1/5 border-r-2 border-gray-200">
           <UserProfileCard />
         </div>
@@ -18,7 +18,7 @@ export const HomePage = () => {
         </div>
 
         <div className="w-2/5">
-          <UserExternalLinkCard />
+          <UserOtherInfoCard />
         </div>
       </div>
     </div>

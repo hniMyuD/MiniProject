@@ -11,6 +11,16 @@ interface User {
   slogan?: string;
   dob?: string;
   avatar?: string;
+  phone?: string;
+  cell?: string;  
+  location?: {
+    address?: string;
+    city?: string;
+    state?: string;
+    country?: string;
+    postcode?: string;
+  };
+  
 }
 interface AuthContextType {
   token: string | null;

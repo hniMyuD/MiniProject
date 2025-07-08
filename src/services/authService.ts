@@ -8,6 +8,15 @@ interface LoginResponse {
     slogan?: string;
     dob?: string;
     avatar?: string;
+    phone?: string;
+    cell?: string;
+    location?: {
+      address?: string;
+      city?: string;
+      state?: string;
+      country?: string;
+      postcode?: string;
+    };
   };
   token: string;
 }
@@ -74,8 +83,18 @@ export const loginWithMockUser = async (params: LoginParams): Promise<LoginRespo
     email: userData.email,
     slogan: "I'm a mock user from Random User Generator",
     dob: userData.dob.date,
-    avatar: userData.picture.thumbnail,
+    avatar: userData.picture.large,
+    phone: userData.phone,
+    cell: userData.cell,  
+    location: {
+      address: userData.location.street ? `${userData.location.street.number} ${userData.location.street.name}` : "",
+      city: userData.location.city,
+      state: userData.location.state,
+      country: userData.location.country,
+      postcode: userData.location.postcode,
+    },
   };
+  console.log("Mock user data:", user);
 
   const token = "mock-token-" + user.id.slice(0, 8);
 
