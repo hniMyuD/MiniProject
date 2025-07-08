@@ -5,14 +5,19 @@ import { useState } from "react";
 import { useAuth } from "@context/AuthContext";
 import { Button } from "@components/Button";
 import { useTranslation } from "react-i18next";
+import { storage } from "@/utils/storage";
+import { useNavigate } from "react-router-dom";
 
 export const NavBar = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const { user, logout } = useAuth();
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-     logout();
+    //  logout();
+    storage.clear();
+    navigate("/login");
   };
 
   return (

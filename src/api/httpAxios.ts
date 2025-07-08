@@ -51,3 +51,8 @@ export const request = async <T>(config: any): Promise<T> => {
 };
 
 export default httpClient;
+
+export const publicHttp = axios.create({
+    baseURL: "https://randomuser.me/",
+    timeout: 5000,
+});

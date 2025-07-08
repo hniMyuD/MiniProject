@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {  login as apiLogin,  logout as apiLogout,  loginWithGoogle as googleLogin, signUp as apiSignUp} from "@services/authService";
+import {  login as apiLogin,  logout as apiLogout, 
+  loginWithGoogle as googleLogin, signUp as apiSignUp, loginWithMockUser as apiLoginWithMockUser} from "@services/authService";
 import { storage } from "@/utils/storage";
 
 interface User {
@@ -18,6 +19,8 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<void>;
   loginWithGoogle: (googleToken: string) => Promise<void>;
   signUp: (email: string, password: string) => Promise<void>;
+  loginWithMockEmail: (email: string, password: string) => Promise<void>;
+  loginWithMockGoogle: (googleToken: string) => Promise<void>;
   logout: () => void;
 }
 
@@ -69,6 +72,40 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const loginWithMockEmail = async (email: string, password: string) => {
+    try {
+      const { token, user } = await apiLoginWithMockUser({ type: "normal", email, password });
+      setToken(token);
+      setUser(user);
+      storage.set<string>("token", token);
+      storage.set<User>("user", user);
+
+      if (token) {
+        navigate("/homepage");
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+      throw error;
+    }
+  };
+
+  const loginWithMockGoogle = async (googleToken: string) => {
+    try {
+      const { token, user } = await apiLoginWithMockUser({ type: "google", googleToken: googleToken });
+      setToken(token);
+      setUser(user);
+      storage.set<string>("token", token);
+      storage.set<User>("user", user);
+
+      if (token) {
+        navigate("/homepage");
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+      throw error;
+    }
+  };
+
   const logout = async () => {
     try {
       await apiLogout();
@@ -95,7 +132,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ token, isAuthenticated: !!token, user, login, loginWithGoogle, logout, signUp }}
+      value={{ token, isAuthenticated: !!token, user, login, loginWithGoogle, logout, signUp, loginWithMockEmail, loginWithMockGoogle }}
     >
       {children}
     </AuthContext.Provider>

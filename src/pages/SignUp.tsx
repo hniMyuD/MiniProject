@@ -40,12 +40,16 @@ export const SignUp = () => {
 
   const onSubmit = async (data: FormFields) => {
     try {
-      await signUp(data.email, data.password);
-    } catch (err) {
-      setError("email", {
-        type: "manual",
-        message: t("login.invalid"),
-      });
+      // await signUp(data.email, data.password);
+      if(data.email && data.password) {
+      navigate("/login");
+      alert("Sign up successful! Please log in.");
+    }
+  } catch (err) {
+    setError("email", {
+      type: "manual",
+      message: t("login.invalid"),
+    });
       setError("password", {
         type: "manual",
         message: t("login.invalid"),
