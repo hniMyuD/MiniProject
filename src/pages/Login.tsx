@@ -20,7 +20,7 @@ const loginSchema = z.object({
 type FormFields = z.infer<typeof loginSchema>;
 
 export const Login = () => {
-  const { login, loginWithGoogle } = useAuth();
+  const { loginWithMockEmail, loginWithMockGoogle } = useAuth();
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -35,7 +35,7 @@ export const Login = () => {
 
   const onSubmit = async (data: FormFields) => {
     try {
-      await login(data.email, data.password);
+      await loginWithMockEmail(data.email, data.password);
     } catch (err) {
       setError("email", {
         type: "manual",
@@ -51,7 +51,7 @@ export const Login = () => {
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse) => {
       try {
-        await loginWithGoogle(tokenResponse.access_token);
+        await loginWithMockGoogle(tokenResponse.access_token);
       } catch (err) {
         alert(t("login.googleError"));
       }
@@ -61,7 +61,6 @@ export const Login = () => {
     },
   });
 
-  const handleGoogleError = () => {};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">

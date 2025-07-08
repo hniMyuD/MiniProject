@@ -1,4 +1,4 @@
-import { request } from '@api/httpAxios';
+import { publicHttp, request } from '@api/httpAxios';
 
 interface LoginResponse {
   user: {
@@ -47,3 +47,37 @@ export const logout = async (): Promise<void> => {
   });
 };
 
+type LoginParams =
+  | { type: "normal"; email: string; password: string }
+  | { type: "google"; googleToken: string };
+
+
+export const loginWithMockUser = async (params: LoginParams): Promise<LoginResponse> => {
+  if (params.type === "normal") {
+    const { email, password } = params;
+    if (!email || !password) {
+      throw new Error("Email and password are required");
+    }
+  } else if (params.type === "google") {
+    const { googleToken } = params;
+    if (!googleToken) {
+      throw new Error("Google token is required");
+    }
+  }
+
+  const res = await publicHttp.get("api/?results=1");
+  const userData = res.data.results[0];
+
+  const user = {
+    id: userData.login.uuid,
+    name: `${userData.name.first} ${userData.name.last}`,
+    email: userData.email,
+    slogan: "I'm a mock user from Random User Generator",
+    dob: userData.dob.date,
+    avatar: userData.picture.thumbnail,
+  };
+
+  const token = "mock-token-" + user.id.slice(0, 8);
+
+  return { user, token };
+};
